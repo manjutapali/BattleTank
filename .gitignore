@@ -76,3 +76,7 @@ DerivedDataCache/*
 
 # starter content
 Content/MobileStarterContent/
+
+#Other files
+.DS_Store
+
