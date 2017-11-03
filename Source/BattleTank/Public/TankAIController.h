@@ -13,10 +13,13 @@ UCLASS()
 class BATTLETANK_API ATankAIController : public AAIController
 {
 	GENERATED_BODY()
-	
+
 public:
-    ATank* GetControlledTank() const;
-    
     // Overriding the actor begin play in the parent list.
     virtual void BeginPlay() override;
+    
+private:
+    ATank* GetControlledTank() const;
+    
+    ATank* GetPlayerTank() const;
 };
