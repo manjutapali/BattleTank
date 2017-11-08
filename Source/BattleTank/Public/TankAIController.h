@@ -18,6 +18,11 @@ public:
     // Overriding the actor begin play in the parent list.
     virtual void BeginPlay() override;
     
+    virtual void Tick(float DeltaTime);
+    
+    void AimToPlayer(FVector HitLocation);
+    
+    
 private:
     ATank* GetControlledTank() const;
     
