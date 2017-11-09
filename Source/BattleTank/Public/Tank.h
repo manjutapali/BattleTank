@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "TankAimingComponent.h"
 #include "GameFramework/Pawn.h"
 #include "Tank.generated.h"
 
@@ -24,5 +25,11 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* InputComponent) override;
     
     void AimAt(FVector HitLocation);
+    
+    UFUNCTION(BlueprintCallable, Category = Tank)
+    void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
+    
+protected:
+    UTankAimingComponent* TankAimingComponent = nullptr;
 	
 };
