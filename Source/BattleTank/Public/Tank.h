@@ -9,6 +9,7 @@
 // Forward Delgation
 class UTankBarrel;
 class UTankAimingComponent;
+class UTankTurret;
 
 UCLASS()
 class BATTLETANK_API ATank : public APawn
@@ -29,6 +30,9 @@ public:
     
     UFUNCTION(BlueprintCallable, Category = Tank)
     void SetBarrelReference(UTankBarrel* BarrelToSet);
+    
+    UFUNCTION(BlueprintCallable, Category = Tank)
+    void SetTurretReference(UTankTurret* TurretToSet);
     
 protected:
     UTankAimingComponent* TankAimingComponent = nullptr;

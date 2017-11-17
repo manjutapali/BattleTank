@@ -7,6 +7,7 @@
 
 // Forward Delgation
 class UTankBarrel;
+class UTankTurret;
 
 // Holds functions related to aiming the barrel
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
@@ -20,12 +21,14 @@ public:
     
     void SetBarrelReference(UTankBarrel* BarrelToSet);
     
-    // TODO add turret reference.
+    void SetTurretReference(UTankTurret* TurretToSet);
     
     void AimAt(FVector HitLocation, float LaunchSpeed);
     
 private:
-    UTankBarrel* Barrel;
+    UTankBarrel* Barrel = nullptr;
+    
+    UTankTurret* Turret = nullptr;
     
     void MoveBarrelTowards(FVector AimDirection);
 };
