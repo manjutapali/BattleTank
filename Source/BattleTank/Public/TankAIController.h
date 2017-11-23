@@ -21,11 +21,4 @@ public:
     
     virtual void Tick(float DeltaTime);
     
-    void AimToPlayer(FVector HitLocation);
-    
-    
-private:
-    ATank* GetControlledTank() const;
-    
-    ATank* GetPlayerTank() const;
 };
