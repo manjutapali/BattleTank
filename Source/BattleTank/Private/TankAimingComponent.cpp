@@ -44,7 +44,7 @@ void UTankAimingComponent::AimAt(FVector HitLocation, float LaunchSpeed)
         
         auto Time = GetWorld()->GetTimeSeconds();
         
-        UE_LOG(LogTemp, Warning, TEXT("%f :: Aiming with launch speed %f, AimDirection = %s"), Time, LaunchSpeed, *AimDirection.ToString());
+        //UE_LOG(LogTemp, Warning, TEXT("%f :: Aiming with launch speed %f, AimDirection = %s"), Time, LaunchSpeed, *AimDirection.ToString());
     }
     else
     {
