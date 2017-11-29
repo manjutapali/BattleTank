@@ -17,4 +17,7 @@ public:
     UFUNCTION(BlueprintCallable, Category = Input)
     void SetThrottle(float throttle);
 	
+    // 40 tonne tank, force = mass * acc (considering acc = 10ms^-2)
+    UPROPERTY(EditDefaultsOnly, Category = Input)
+    float TrackMaxDrivingForce = 400000;
 };
