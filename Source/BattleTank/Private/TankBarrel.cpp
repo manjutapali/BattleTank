@@ -5,7 +5,6 @@
 
 void UTankBarrel::Elevate(float RelativeSpeed)
 {
-    //UE_LOG(LogTemp, Warning, TEXT("Rotate barrel with roation speed = %f"), RelativeSpeed)
     // move barrel to right amount this frame
     // given max elevation speed, and the frame time
     RelativeSpeed = FMath::Clamp<float>(RelativeSpeed, -1, 1);
