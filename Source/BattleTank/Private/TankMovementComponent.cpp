@@ -14,10 +14,20 @@ void UTankMovementComponent::RequestDirectMove(const FVector &MoveVelocity , boo
 {
     // No need to call super, since replacing the functionality.
     
-    auto TankName = GetOwner()->GetName();
-    auto MoveVelocityString = MoveVelocity.ToString();
+    auto Tankforward = GetOwner()->GetActorForwardVector().GetSafeNormal();
+    auto AIforward = MoveVelocity.GetSafeNormal();
     
-    UE_LOG(LogClass, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityString)
+    // Dot product to Get forward and backword movement to near the player tank.
+    auto ForwardThrow = FVector::DotProduct(Tankforward, AIforward);
+    
+    // Cross product to get the direction for to move towards the player tank, Get Z vector.
+    auto TurnThrow = FVector::CrossProduct(Tankforward, AIforward).Z;
+    
+    IntendToMoveForward(ForwardThrow);
+    
+    IntendMoveRight(TurnThrow);
+    
+    //UE_LOG(LogClass, Warning, TEXT("%s vectoring to %s"), *TankName, *MoveVelocityString)
     
 }
 
