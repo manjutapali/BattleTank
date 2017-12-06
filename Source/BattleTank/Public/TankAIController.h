@@ -21,4 +21,5 @@ public:
     
     virtual void Tick(float DeltaTime);
     
+    float AccepatceRadius = 3000;
 };
