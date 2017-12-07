@@ -22,10 +22,13 @@ public:
     
     void Tick(float DeltaTime) override;
     
-    ATank* GetControlledTank() const;
-    
     // starts tank moving barrel to shot where crosshair intersects the world.
     void AimTowardsCrossHair();
+
+protected:
+    
+    UFUNCTION(BlueprintCallable, Category = "Tank")
+    ATank* GetControlledTank() const;
     
 private:
     bool GetSightRayHitLocation(FVector& HitLocation) const;
