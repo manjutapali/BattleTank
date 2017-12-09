@@ -7,9 +7,10 @@
 
 // Forward delegations
 class ATank;
+class UTankAimingComponent;
 
 /**
- * 
+ * Contains function related user play.
  */
 UCLASS()
 class BATTLETANK_API ATankPlayerController : public APlayerController
@@ -27,8 +28,11 @@ public:
 
 protected:
     
-    UFUNCTION(BlueprintCallable, Category = "Tank")
+    UFUNCTION(BlueprintCallable, Category = "Setup")
     ATank* GetControlledTank() const;
+    
+    UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
+    void AimingComponentFound(UTankAimingComponent* AimingComponent);
     
 private:
     bool GetSightRayHitLocation(FVector& HitLocation) const;
