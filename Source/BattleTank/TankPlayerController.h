@@ -6,7 +6,6 @@
 #include "TankPlayerController.generated.h"
 
 // Forward delegations
-class ATank;
 class UTankAimingComponent;
 
 /**
@@ -27,9 +26,6 @@ public:
     void AimTowardsCrossHair();
 
 protected:
-    
-    UFUNCTION(BlueprintCallable, Category = "Setup")
-    ATank* GetControlledTank() const;
     
     UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
     void AimingComponentFound(UTankAimingComponent* AimingComponent);

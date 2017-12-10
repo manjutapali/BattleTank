@@ -8,7 +8,6 @@
 
 // Forward Delgation
 class UTankBarrel;
-class UTankAimingComponent;
 class UTankTurret;
 class AProjectile;
 
@@ -20,16 +19,9 @@ class BATTLETANK_API ATank : public APawn
 public:
 	// Sets default values for this pawn's properties
 	ATank();
-
-    void AimAt(FVector HitLocation);
     
     UFUNCTION(BlueprintCallable, Category = "Tank")
     void Fire();
-    
-protected:
-    
-    UPROPERTY(BlueprintReadOnly)
-    UTankAimingComponent* TankAimingComponent = nullptr;
 
 private:
     
@@ -38,11 +30,11 @@ private:
     UPROPERTY(EditDefaultsOnly, Category = "Setup")
     TSubclassOf<AProjectile> ProjectileBlueprint;
     
-    UPROPERTY(EditAnywhere, Category = "Firing")
-    float LaunchSpeed = 4000.0;
-    
     UPROPERTY(EditDefaultsOnly,Category = "Firing")
     float ReloadTimeInSeconds = 3;
+    
+    UPROPERTY(EditAnywhere, Category = "Firing")
+    float LaunchSpeed = 4000.0;
     
     // Barrel reference
     UTankBarrel* Barrel = nullptr; // TODO Remove

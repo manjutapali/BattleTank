@@ -5,8 +5,6 @@
 #include "AIController.h"
 #include "TankAIController.generated.h"
 
-// Forward delagtions
-class ATank;
 /**
  * 
  */
