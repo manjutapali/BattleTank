@@ -39,16 +39,24 @@ public:
 protected:
     
     UPROPERTY(BlueprintReadOnly, Category = "UI")
-    EFiringState FiringState = EFiringState::Aiming;
+    EFiringState FiringState = EFiringState::Reloading;
     
 private:
     UTankBarrel* Barrel = nullptr;
     
     UTankTurret* Turret = nullptr;
     
+    FVector CurrDirection = FVector();
+    
     double LastFireTime = 0;
     
     void MoveBarrelTowards(FVector AimDirection);
+    
+    virtual void BeginPlay();
+    
+    virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction) override;
+    
+    bool IsBarrelRotating();
     
     UPROPERTY(EditAnywhere, Category = "Firing")
     float LaunchSpeed = 4000.0;

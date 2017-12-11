@@ -30,7 +30,7 @@ void AProjectile::Tick( float DeltaTime )
 
 void AProjectile::Launch(float speed)
 {
-    if(!ensure(ProjectileMovementComp)) { return; }
+    if(!ProjectileMovementComp) { return; }
     auto Time = GetWorld()->GetTimeSeconds();
     UE_LOG(LogTemp, Warning, TEXT("%f: Projectile firing at %f"), Time, speed)
     
