@@ -112,7 +112,5 @@ bool UTankAimingComponent::IsBarrelRotating()
     
     auto BarrelForward = Barrel->GetForwardVector();
     
-    UE_LOG(LogTemp, Warning, TEXT("Barrel forward = %s and Current Direction = %s"), *BarrelForward.ToString(), *CurrDirection.ToString())
-    
     return !BarrelForward.Equals(CurrDirection, 0.01);
 }

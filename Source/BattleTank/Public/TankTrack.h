@@ -20,4 +20,10 @@ public:
     // 40 tonne tank, force = mass * acc (considering acc = 10ms^-2)
     UPROPERTY(EditDefaultsOnly, Category = Input)
     float TrackMaxDrivingForce = 400000;
+
+private:
+    
+    UTankTrack();
+    
+    virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 };
