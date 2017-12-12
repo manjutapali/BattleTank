@@ -19,7 +19,7 @@ UTankAimingComponent::UTankAimingComponent()
 
 void UTankAimingComponent::BeginPlay()
 {
-    FiringState = EFiringState::Reloading;
+    LastFireTime = FPlatformTime::Seconds();
 }
 
 void  UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
@@ -49,7 +49,6 @@ void UTankAimingComponent::Initialize(UTankBarrel *BarrelToSet, UTankTurret *Tur
 
 void UTankAimingComponent::AimAt(FVector HitLocation)
 {
-    CurrDirection = HitLocation;
     
     if(!ensure(Barrel)) { return; }
     
@@ -69,18 +68,9 @@ void UTankAimingComponent::AimAt(FVector HitLocation)
     if(bHaveAimSolution)
     {
         auto AimDirection = OutLaunchVelocity.GetSafeNormal();
-        
+        CurrDirection = AimDirection;
         // move the barrel
         MoveBarrelTowards(AimDirection);
-        
-        auto Time = GetWorld()->GetTimeSeconds();
-        
-        //UE_LOG(LogTemp, Warning, TEXT("%f :: Aiming with launch speed %f, AimDirection = %s"), Time, LaunchSpeed, *AimDirection.ToString());
-    }
-    else
-    {
-        //auto Time = GetWorld()->GetTimeSeconds();
-        //UE_LOG(LogTemp, Warning, TEXT("%f :: No aiming solution found"), Time)
     }
 }
 
@@ -122,7 +112,7 @@ bool UTankAimingComponent::IsBarrelRotating()
     
     auto BarrelForward = Barrel->GetForwardVector();
     
-    UE_LOG(LogTem, <#Verbosity#>, <#Format, ...#>)
+    UE_LOG(LogTemp, Warning, TEXT("Barrel forward = %s and Current Direction = %s"), *BarrelForward.ToString(), *CurrDirection.ToString())
     
-    return !BarrelForward.Equals(CurrDirection, 0.1);
+    return !BarrelForward.Equals(CurrDirection, 0.01);
 }
