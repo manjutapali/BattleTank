@@ -31,12 +31,10 @@ void  UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickT
     }
     else if(IsBarrelRotating())
     {
-        //UE_LOG(LogTemp, Warning, TEXT("Barrel is roatating"))
         FiringState = EFiringState::Aiming;
     }
     else
     {
-        //UE_LOG(LogTemp, Warning, TEXT("Locked State"))
         FiringState = EFiringState::Locked;
     }
 }
@@ -84,7 +82,14 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
     
     Barrel->Elevate(DeltaRotator.Pitch);
     
-    Turret->Rotate(DeltaRotator.Yaw);
+    if(FMath::Abs(DeltaRotator.Yaw) < 180)
+    {
+        Turret->Rotate(DeltaRotator.Yaw);
+    }
+    else
+    {
+        Turret->Rotate(-DeltaRotator.Yaw);
+    }
 }
 
 void UTankAimingComponent::Fire()

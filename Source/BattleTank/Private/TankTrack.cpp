@@ -10,7 +10,6 @@ UTankTrack::UTankTrack()
 
 void UTankTrack::BeginPlay()
 {
-    UE_LOG(LogTemp, Warning, TEXT("TankTrack beginplay"))
     OnComponentHit.AddDynamic(this, &UTankTrack::onHit);
 }
 
