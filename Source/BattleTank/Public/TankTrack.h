@@ -23,11 +23,15 @@ public:
 
 private:
     
+    float CurrThrottle = 0;
+    
     UTankTrack();
     
-    void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
-    
     void BeginPlay() override;
+    
+    void ApplySideWaysForce();
+    
+    void DriveTrack();
     
     UFUNCTION(BlueprintCallable, Category = "Track")
     void onHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& HitResult);
