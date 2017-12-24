@@ -22,11 +22,13 @@ public:
     
     void Tick(float DeltaTime) override;
     
+    void SetPawn(APawn* InPawn) override;
+
     // starts tank moving barrel to shot where crosshair intersects the world.
     void AimTowardsCrossHair();
 
 protected:
-    
+
     UFUNCTION(BlueprintImplementableEvent, Category = "Setup")
     void AimingComponentFound(UTankAimingComponent* AimingComponent);
     
@@ -45,4 +47,7 @@ private:
     bool GetLookDirection(FVector2D ScreenLocation, FVector& LookDirection) const;
     
     bool GetLookVectorHitLocation(FVector LookDirection, FVector& HitLocation) const;
+
+    UFUNCTION()
+    void OnPlayerDeath();
 };
