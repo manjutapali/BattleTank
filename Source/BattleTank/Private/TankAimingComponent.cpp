@@ -24,8 +24,11 @@ void UTankAimingComponent::BeginPlay()
 
 void  UTankAimingComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction * ThisTickFunction)
 {
-    
-    if((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
+    if(RoundsLeft <= 0)
+    {
+        FiringState= EFiringState::NoAmmo;
+    }
+    else if((FPlatformTime::Seconds() - LastFireTime) < ReloadTimeInSeconds)
     {
         FiringState = EFiringState::Reloading;
     }
@@ -92,9 +95,19 @@ void UTankAimingComponent::MoveBarrelTowards(FVector AimDirection)
     }
 }
 
+EFiringState UTankAimingComponent::GetFiringState() const
+{
+    return FiringState;
+}
+
+int UTankAimingComponent::GetRoundsLeft() const
+{
+    return RoundsLeft;
+}
+
 void UTankAimingComponent::Fire()
 {
-    if(FiringState != EFiringState::Reloading)
+    if( FiringState != EFiringState::NoAmmo && FiringState != EFiringState::Reloading)
     {
         if(!ensure(Barrel) && !(ProjectileBlueprint)) { return; }
         // Spawning the Projectile actor
@@ -107,6 +120,7 @@ void UTankAimingComponent::Fire()
         // launch the projectile.
         Projectile->Launch(LaunchSpeed);
         
+        RoundsLeft -= 1;
         LastFireTime = FPlatformTime::Seconds();
     }
 }

@@ -10,7 +10,8 @@ enum class EFiringState : uint8
 {
     Reloading,
     Aiming,
-    Locked
+    Locked,
+    NoAmmo
 };
 
 // Forward Delgation
@@ -33,8 +34,13 @@ public:
     
     void AimAt(FVector HitLocation);
     
-    UFUNCTION(BlueprintCallable, Category = "Tank")
+    EFiringState GetFiringState() const;
+    
+    UFUNCTION(BlueprintCallable, Category = "Firing")
     void Fire();
+    
+    UFUNCTION(BlueprintCallable, Category = "Firing")
+    int GetRoundsLeft() const;
     
 protected:
     
@@ -49,6 +55,8 @@ private:
     FVector CurrDirection = FVector();
     
     double LastFireTime = 0;
+    
+    int RoundsLeft = 3;
     
     void MoveBarrelTowards(FVector AimDirection);
     

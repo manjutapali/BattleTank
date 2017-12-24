@@ -19,5 +19,6 @@ public:
     
     virtual void Tick(float DeltaTime);
     
-    float AccepatceRadius = 3000;
+    UPROPERTY(EditDefaultsOnly, Category = "Setup")
+    float AccepatceRadius = 80000;
 };

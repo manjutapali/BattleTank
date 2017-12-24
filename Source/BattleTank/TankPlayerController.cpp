@@ -26,8 +26,6 @@ void ATankPlayerController::Tick(float DeltaTime)
 
 void ATankPlayerController::AimTowardsCrossHair()
 {
-    //UE_LOG(LogClass, Warning, TEXT("Aiming towards cross hair"))
-    
     if(!GetPawn()) { return; }
     
     FVector HitLocation; //out parameter;
@@ -50,15 +48,11 @@ bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const /
     FVector LookDirection;
     if(GetLookDirection(ScreenLocation, LookDirection))
     {
-        //UE_LOG(LogTemp, Warning, TEXT("Look direction is %s"), *LookDirection.ToString())
-        
         // Line trace along that look direction and see what it hits.
         
         return GetLookVectorHitLocation(LookDirection, HitLocation);
     }
     
-    
-    //HitLocation = FVector(1.0);
     return false;
 }
 
