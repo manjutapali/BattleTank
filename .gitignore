@@ -74,9 +74,6 @@ Intermediate/*
 # Cache files for the editor to use
 DerivedDataCache/*
 
-# starter content
-Content/MobileStarterContent/
-
 #Other files
 .DS_Store
 
